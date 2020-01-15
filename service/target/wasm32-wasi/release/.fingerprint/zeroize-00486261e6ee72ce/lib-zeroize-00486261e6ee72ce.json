@@ -1,0 +1,1 @@
+{"rustc":10218013116090815458,"features":"[\"alloc\", \"default\"]","target":14013996714029298151,"profile":2574335274271406459,"path":5542234752994776284,"deps":[],"local":[{"CheckDepInfo":{"dep_info":"wasm32-wasi/release/.fingerprint/zeroize-00486261e6ee72ce/dep-lib-zeroize-00486261e6ee72ce"}}],"rustflags":[],"metadata":8100323270896895537}
