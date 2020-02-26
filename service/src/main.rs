@@ -11,6 +11,9 @@ use portex_pkg::Ciphertext;
 
 //use serde_json::Result;
 
+extern crate time;
+use time::PreciseTime;
+
 #[macro_use]
 extern crate lazy_static;
 
@@ -154,26 +157,40 @@ mod tests {
         
         // PKG Setup ***************** [start] *****************************
         // Prepare the group parameters	
+		let start_0 = PreciseTime::now();
         let pkg_mpk = portex_pkg.get_pkg_mpk();
-        println!("pkg_mpk {:?}", pkg_mpk);
+		let end_0 = PreciseTime::now();
+		println!("{} seconds for preparing the group parameters", start_0.to(end_0));
+        //println!("pkg_mpk {:?}", pkg_mpk);
 
         // Key  Extraction [OnLine] ***************** [start] *****************************
+		let start_1 = PreciseTime::now();
         let id = "bob".to_string(); 
         let receiver =  Receiver::new((*PUBLIC_KEY_SET).clone());
         let partial_private_key_1 = portex_pkg.get_user_partial_private_key_from_sub_pkg1(receiver.clone(),id.clone());
         let partial_private_key_2 = portex_pkg.get_user_partial_private_key_from_sub_pkg2(receiver.clone(),id.clone());
         let partial_private_key_3 = portex_pkg.get_user_partial_private_key_from_sub_pkg3(receiver.clone(),id.clone());
-       
-        println!("partial_private_key_1 {:?}", partial_private_key_1);
+		
+	    let end_1 = PreciseTime::now();
+		println!("{} seconds for key extraction", start_1.to(end_1));
+		
+        //println!("partial_private_key_1 {:?}", partial_private_key_1);
     
-        // Encryption [OffLine] ***************** [start] *****************************	  
+        // Encryption [OffLine] ***************** [start] *****************************	
+        let start_2 = PreciseTime::now();		
 	    let msg = b"this is a test";
         let sender =  Sender::new(pkg_mpk);
         let ciphertext = sender.encrypt_new(msg,id.clone());
+		
+		let end_2 = PreciseTime::now();
+		println!("{} seconds for encryption", start_2.to(end_2));
+		
 	    //let ciphertext = pkg_mpk.encrypt_new(msg,id.clone());
 
         // Check ***************** [start] *****************************	 
 	    // check the ciphertext
+		let start_3 = PreciseTime::now();
+		
 	    let check_res_0 =  portex_pkg.verify_ciphertext(&ciphertext);
 	    assert!(check_res_0);
 
@@ -190,11 +207,20 @@ mod tests {
         let check_res_3 = portex_pkg.check_partial_private_key_from_sub_pkg3(id.clone(), &partial_private_key_3);
 	    assert!(check_res_3);
         partial_private_key_map.insert(3, partial_private_key_3.clone());
+		
+		let end_3 = PreciseTime::now();
+		println!("{} seconds for checking the ciphertext", start_3.to(end_3));
 
         // Decryption ***************** [start] *****************************	 
+		
+		let start_4 = PreciseTime::now();
+		
 		let res = receiver.decrypt_ciphertext((*PUBLIC_KEY_SET).clone(), &partial_private_key_map, &ciphertext).unwrap();
 		let decryption_message = str::from_utf8(&res).unwrap();
 		println!("decryption_message {:?}", decryption_message);
+		
+		let end_4 = PreciseTime::now();
+		println!("{} seconds for checking the ciphertext", start_4.to(end_4));
 
         //println!("{}", portex_pkg.say_hello(&admin_ctx));
         
