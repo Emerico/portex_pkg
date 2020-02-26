@@ -153,11 +153,12 @@ mod tests {
     #[test]
     fn test() {
 	    let (_admin, admin_ctx) = create_account_ctx();
-        let portex_pkg = PortexPkg::new(&admin_ctx);
+        
         
         // PKG Setup ***************** [start] *****************************
         // Prepare the group parameters	
 		let start_0 = PreciseTime::now();
+		let portex_pkg = PortexPkg::new(&admin_ctx);
         let pkg_mpk = portex_pkg.get_pkg_mpk();
 		let end_0 = PreciseTime::now();
 		println!("{} seconds for preparing the group parameters", start_0.to(end_0));
@@ -220,7 +221,7 @@ mod tests {
 		println!("decryption_message {:?}", decryption_message);
 		
 		let end_4 = PreciseTime::now();
-		println!("{} seconds for checking the ciphertext", start_4.to(end_4));
+		println!("{} seconds for decryption", start_4.to(end_4));
 
         //println!("{}", portex_pkg.say_hello(&admin_ctx));
         

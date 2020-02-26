@@ -1,19 +1,18 @@
 root@beautiful-kittens-3:~/pkg/portex_pkg/service# oasis test -- --nocapture
     Building portex_pkg
-    Finished release [optimized] target(s) in 0.16s
+    Finished release [optimized] target(s) in 0.10s
    Preparing portex_pkg.wasm
      Testing portex_pkg
-    Finished release [optimized] target(s) in 0.13s
+    Finished release [optimized] target(s) in 0.08s
      Running target/release/deps/portex_pkg-4be920514a1e51b0
 
 running 1 test
-PT0.000000286S seconds for preparing the group parameters
-PT0.002981807S seconds for key extraction
-PT0.009499989S seconds for encryption
-PT0.037979320S seconds for checking the ciphertext
+PT0.003245683S seconds for preparing the group parameters
+PT0.002641914S seconds for key extraction
+PT0.008406586S seconds for encryption
+PT0.038423362S seconds for checking the ciphertext
 decryption_message "this is a test"
-PT0.030801566S seconds for checking the ciphertext
+PT0.007222939S seconds for decryption
 test tests::test ... ok
 
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
-
