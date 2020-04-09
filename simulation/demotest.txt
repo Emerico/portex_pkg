@@ -16,3 +16,164 @@ PT0.007222939S seconds for decryption
 test tests::test ... ok
 
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+
+root@beautiful-kittens-3:~/pkg/portex_pkg/simulation/service# oasis test -- --nocapture
+    Building portex_pkg
+   Compiling portex_pkg v0.1.0 (/root/pkg/portex_pkg/simulation/service)
+warning: unused import: `Address`
+ --> src/main.rs:1:17
+  |
+1 | use oasis_std::{Address, Context};
+  |                 ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `portex_pkg::DecryptionShare`
+ --> src/main.rs:9:5
+  |
+9 | use portex_pkg::DecryptionShare;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `portex_pkg::Ciphertext`
+  --> src/main.rs:10:5
+   |
+10 | use portex_pkg::Ciphertext;
+   |     ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `time::PreciseTime`
+  --> src/main.rs:15:5
+   |
+15 | use time::PreciseTime;
+   |     ^^^^^^^^^^^^^^^^^
+
+warning: unused variable: `ctx`
+  --> src/main.rs:68:16
+   |
+68 |     pub fn new(ctx: &Context) -> Self {
+   |                ^^^ help: consider prefixing with an underscore: `_ctx`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `key`
+   --> src/main.rs:143:9
+    |
+143 |        let key = receiver.obtain_user_partial_private_key(&SUB_PKG1, id);
+    |            ^^^ help: consider prefixing with an underscore: `_key`
+
+warning: method is never used: `simpk16`
+  --> src/main.rs:75:5
+   |
+75 |     fn simpk16(&self) -> PkgPublicKey {
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: method is never used: `simpk32`
+  --> src/main.rs:88:5
+   |
+88 |     fn simpk32(&self) -> PkgPublicKey {
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: method is never used: `simpk64`
+   --> src/main.rs:101:5
+    |
+101 |     fn simpk64(&self) -> PkgPublicKey {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: method is never used: `simpk128`
+   --> src/main.rs:114:5
+    |
+114 |     fn simpk128(&self) -> PkgPublicKey {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: method is never used: `simpk256`
+   --> src/main.rs:127:5
+    |
+127 |     fn simpk256(&self) -> PkgPublicKey {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src/sub_pkg/instance.rs:35:5
+   |
+35 |     pub id: usize,
+   |     ^^^^^^^^^^^^^
+   |
+note: lint level defined here
+  --> src/sub_pkg/instance.rs:2:9
+   |
+2  | #![warn(missing_docs)]
+   |         ^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src/sub_pkg/instance.rs:36:5
+   |
+36 |     pub pkg_sk_share: SecretKeyShare,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src/sub_pkg/instance.rs:37:5
+   |
+37 |     pub pkg_pk_share: PkgPublicKeyShare,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src/sub_pkg/instance.rs:38:5
+   |
+38 |     pub msg_inbox: Option<Ciphertext>,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    Finished release [optimized] target(s) in 8.52s
+   Preparing portex_pkg.wasm
+     Testing portex_pkg
+   Compiling portex_pkg v0.1.0 (/root/pkg/portex_pkg/simulation/service)
+warning: unused import: `portex_pkg::DecryptionShare`
+ --> src/main.rs:9:5
+  |
+9 | use portex_pkg::DecryptionShare;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `portex_pkg::Ciphertext`
+  --> src/main.rs:10:5
+   |
+10 | use portex_pkg::Ciphertext;
+   |     ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused variable: `ctx`
+  --> src/main.rs:68:16
+   |
+68 |     pub fn new(ctx: &Context) -> Self {
+   |                ^^^ help: consider prefixing with an underscore: `_ctx`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `key`
+   --> src/main.rs:143:9
+    |
+143 |        let key = receiver.obtain_user_partial_private_key(&SUB_PKG1, id);
+    |            ^^^ help: consider prefixing with an underscore: `_key`
+
+warning: type alias is never used: `Result`
+  --> src/main.rs:64:1
+   |
+64 | type Result<T> = std::result::Result<T, String>; 
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: method is never used: `simuk`
+   --> src/main.rs:140:5
+    |
+140 |     pub fn simuk(&self,_ctx: &Context, id: String) ->  Result<()> {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    Finished release [optimized] target(s) in 3.26s
+     Running target/release/deps/portex_pkg-4be920514a1e51b0
+
+running 1 test
+PT0.003445411S seconds for simulating 16 PKGs
+PT0.001057732S seconds for simulating 32 PKGs
+PT0.002433598S seconds for simulating 64 PKGs
+PT0.005580513S seconds for simulating 128 PKGs
+PT0.012998845S seconds for simulating 256 PKGs
+test tests::test ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+

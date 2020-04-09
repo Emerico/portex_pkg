@@ -11,8 +11,8 @@ use portex_pkg::Ciphertext;
 
 //use serde_json::Result;
 
-//extern crate time;
-//use time::PreciseTime;
+extern crate time;
+use time::PreciseTime;
 
 #[macro_use]
 extern crate lazy_static;
@@ -91,7 +91,7 @@ impl PortexPkg {
 		loop {
 		    sub_pkg_vec.push(SubPKG::new(x,(*SECRET_KEY_SET).clone(), (*PUBLIC_KEY_SET).clone()));
 			x = x + 1;
-			if x == 16 { break; }
+			if x == 32 { break; }
 		}
         let sub_pkg_manager = SubPKGManager::new(sub_pkg_vec, (*PUBLIC_KEY_SET).clone());
 	    sub_pkg_manager.publish_public_key()	
@@ -104,7 +104,7 @@ impl PortexPkg {
 		loop {
 		    sub_pkg_vec.push(SubPKG::new(x,(*SECRET_KEY_SET).clone(), (*PUBLIC_KEY_SET).clone()));
 			x = x + 1;
-			if x == 16 { break; }
+			if x == 64 { break; }
 		}
         let sub_pkg_manager = SubPKGManager::new(sub_pkg_vec, (*PUBLIC_KEY_SET).clone());
 	    sub_pkg_manager.publish_public_key()	
@@ -117,7 +117,7 @@ impl PortexPkg {
 		loop {
 		    sub_pkg_vec.push(SubPKG::new(x,(*SECRET_KEY_SET).clone(), (*PUBLIC_KEY_SET).clone()));
 			x = x + 1;
-			if x == 16 { break; }
+			if x == 128 { break; }
 		}
         let sub_pkg_manager = SubPKGManager::new(sub_pkg_vec, (*PUBLIC_KEY_SET).clone());
 	    sub_pkg_manager.publish_public_key()	
@@ -130,7 +130,7 @@ impl PortexPkg {
 		loop {
 		    sub_pkg_vec.push(SubPKG::new(x,(*SECRET_KEY_SET).clone(), (*PUBLIC_KEY_SET).clone()));
 			x = x + 1;
-			if x == 16 { break; }
+			if x == 256 { break; }
 		}
         let sub_pkg_manager = SubPKGManager::new(sub_pkg_vec, (*PUBLIC_KEY_SET).clone());
 	    sub_pkg_manager.publish_public_key()	
@@ -167,6 +167,36 @@ mod tests {
     #[test]
     fn test() {
 	    let (_admin, admin_ctx) = create_account_ctx();
-		//let portex_pkg = PortexPkg::new(&admin_ctx);
+		let portex_pkg = PortexPkg::new(&admin_ctx);
+		
+		let start_0 = PreciseTime::now();
+		portex_pkg.simpk16();
+		let end_0 = PreciseTime::now();
+		println!("{} seconds for simulating 16 PKGs", start_0.to(end_0));
+		
+		let start_1 = PreciseTime::now();
+		portex_pkg.simpk32();
+		let end_1 = PreciseTime::now();
+		println!("{} seconds for simulating 32 PKGs", start_1.to(end_1));
+		
+		let start_2 = PreciseTime::now();
+		portex_pkg.simpk64();
+		let end_2 = PreciseTime::now();
+		println!("{} seconds for simulating 64 PKGs", start_2.to(end_2));
+		
+		let start_3 = PreciseTime::now();
+		portex_pkg.simpk128();
+		let end_3 = PreciseTime::now();
+		println!("{} seconds for simulating 128 PKGs", start_3.to(end_3));
+		
+		let start_4 = PreciseTime::now();
+		portex_pkg.simpk256();
+		let end_4 = PreciseTime::now();
+		println!("{} seconds for simulating 256 PKGs", start_4.to(end_4));
+		
+		//let start_5 = PreciseTime::now();
+		//portex_pkg.simuk('test');
+		//let end_5 = PreciseTime::now();
+		//println!("{} seconds for simulating obtain the user key", start_5.to(end_5));
     }
 }
