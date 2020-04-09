@@ -1,0 +1,33 @@
+[package]
+name = "portex_pkg"
+version = "0.1.0"
+authors = ["typex1024 <test@example.com>"]
+edition = "2018"
+
+[dependencies]
+oasis-std = "0.2.7"
+serde = { version = "1.0", features = ["derive"] }
+map_vec = "0.2"
+byteorder = "1.3.2"
+failure = "0.1.6"
+hex_fmt = "0.3.0"
+log = "0.4.8"
+pairing = { version = "0.14.2", features = ["u128-support"] }
+rand = {version = "0.7.3", features = ["wasm-bindgen"]} #
+#wasi = "0.9.0+wasi-snapshot-preview1"
+rand04 = { version = "0.1.0"} #, default-features = false 
+rand_chacha = "0.2.1"
+tiny-keccak = "1.5.0"
+codec = { package = "parity-scale-codec", version = "1.0.6", default-features = false, features = ["derive"], optional = true  }
+bincode = { version = "1.2", optional = true }
+zeroize = "1.0"
+lazy_static = "1.4.0" #new
+serde_json = "1.0"
+time = "0.1.42"
+
+#[features]
+#default = ["std"]
+#std = ["rand04/std", "rand/std"]
+
+[dev-dependencies]
+oasis-test = "0.2"

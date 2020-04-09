@@ -1,0 +1,1 @@
+{"rustc":10218013116090815458,"features":"[\"default\", \"std\"]","target":11715284109194862505,"profile":2574335274271406459,"path":6156751876917922214,"deps":[],"local":[{"CheckDepInfo":{"dep_info":"wasm32-wasi/release/.fingerprint/wasi-cb48d934a1435616/dep-lib-wasi-cb48d934a1435616"}}],"rustflags":[],"metadata":2096215411603074410}

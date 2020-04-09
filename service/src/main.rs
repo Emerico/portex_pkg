@@ -186,7 +186,6 @@ mod tests {
 		let end_2 = PreciseTime::now();
 		println!("{} seconds for encryption", start_2.to(end_2));
 		
-	    //let ciphertext = pkg_mpk.encrypt_new(msg,id.clone());
 
         // Check ***************** [start] *****************************	 
 	    // check the ciphertext
@@ -204,13 +203,14 @@ mod tests {
 	    let check_res_2 = portex_pkg.check_partial_private_key_from_sub_pkg2(id.clone(), &partial_private_key_2);
 	    assert!(check_res_2);
         partial_private_key_map.insert(2, partial_private_key_2.clone());
+		
+		let end_3 = PreciseTime::now();
+		println!("{} seconds for checking the ciphertext", start_3.to(end_3));
 
         let check_res_3 = portex_pkg.check_partial_private_key_from_sub_pkg3(id.clone(), &partial_private_key_3);
 	    assert!(check_res_3);
         partial_private_key_map.insert(3, partial_private_key_3.clone());
 		
-		let end_3 = PreciseTime::now();
-		println!("{} seconds for checking the ciphertext", start_3.to(end_3));
 
         // Decryption ***************** [start] *****************************	 
 		
